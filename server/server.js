@@ -11,11 +11,6 @@ const cards = [
   { name: "Eco do Vazio", type: "Feitiço", attack: 0, defense: 0 },
 ];
 
-app.get("/api/cartas", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.json(cards);
-});
-
 function page(title, body) {
   return `<!DOCTYPE html>
 <html lang="pt">
