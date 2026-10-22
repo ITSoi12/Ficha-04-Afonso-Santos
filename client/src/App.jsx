@@ -11,14 +11,10 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/cartas")
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => setCards(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+  fetch("http://localhost:3000/api/cartas")
+    .then((res) => res.json())
+    .then((data) => setCards(data))
+    .finally(() => setLoading(false));
   }, []);
 
   let visible = cards
