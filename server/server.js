@@ -1,4 +1,5 @@
 const express = require("express");
+const { useEffect } = require("react");
 
 const app = express();
 const PORT = 3000;
@@ -10,6 +11,12 @@ const cards = [
   { name: "Sentinela de Âmbar", type: "Criatura", attack: 6, defense: 6 },
   { name: "Eco do Vazio", type: "Feitiço", attack: 0, defense: 0 },
 ];
+
+useEffect(() => {
+  fetch("http://localhost:3000/api/cartas")
+    .then((res) => res.json())
+    .then((data) => setCards(data));
+}, []);
 
 function page(title, body) {
   return `<!DOCTYPE html>
