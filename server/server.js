@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+res.set("Access-Control-Allow-Origin", "http://localhost:5173");
+
 const cards = [
   { name: "Dragão de Cobalto", type: "Criatura", attack: 7, defense: 5 },
   { name: "Guardiã das Marés", type: "Criatura", attack: 4, defense: 8 },
@@ -24,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/cartas", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:5173");
   res.json(cards);
 });
 
