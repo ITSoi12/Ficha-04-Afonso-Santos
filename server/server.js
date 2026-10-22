@@ -11,12 +11,6 @@ const cards = [
   { name: "Eco do Vazio", type: "Feitiço", attack: 0, defense: 0 },
 ];
 
-useEffect(() => {
-  fetch("http://localhost:3000/api/cartas")
-    .then((res) => res.json())
-    .then((data) => setCards(data));
-}, []);
-
 app.get("/api/cartas", (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:5173");
   res.json(cards);
