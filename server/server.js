@@ -1,5 +1,4 @@
 const express = require("express");
-const { useEffect } = require("react");
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +16,11 @@ useEffect(() => {
     .then((res) => res.json())
     .then((data) => setCards(data));
 }, []);
+
+app.get("/api/cartas", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.json(cards);
+});
 
 function page(title, body) {
   return `<!DOCTYPE html>
