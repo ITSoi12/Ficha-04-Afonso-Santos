@@ -11,6 +11,22 @@ const cards = [
   { name: "Eco do Vazio", type: "Feitiço", attack: 0, defense: 0 },
 ];
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
+app.get("/api/cartas", (req, res) => {
+  res.json(cards);
+});
+
 function page(title, body) {
   return `<!DOCTYPE html>
 <html lang="pt">
@@ -73,6 +89,7 @@ app.get("/agora", (req, res) => {
 });
 
 app.use((req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
   res.status(404).send(page(
     "404 — não encontrado",
     `<p>Não existe nada em <code>${req.url}</code>.</p>
