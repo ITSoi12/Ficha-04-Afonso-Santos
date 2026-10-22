@@ -12,8 +12,12 @@ function App() {
 
   useEffect(() => {
   fetch("http://localhost:3000/api/cartas")
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error("HTTP 404");
+      return res.json();
+    })
     .then((data) => setCards(data))
+    .catch((err) => setError(err.message))
     .finally(() => setLoading(false));
   }, []);
 

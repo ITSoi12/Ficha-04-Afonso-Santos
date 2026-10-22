@@ -26,8 +26,18 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/cartas", (req, res) => {
+  const { tipo } = req.query;
+
+  const filtered = tipo
+    ? cards.filter((card) => card.type === tipo)
+    : cards;
+
   res.set("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.json(cards);
+  res.json(filtered);
+});
+app.get("/api/cartas/aleatoria", (req, res) => {
+  const card = cards[Math.floor(Math.random() * cards.length)];
+  res.json(card);
 });
 
 function page(title, body) {
